@@ -2,7 +2,7 @@ import { Router } from 'express'
 import * as auth from '../middlewares/auth.js'
 import upload from '../middlewares/upload.js'
 import admin from '../middlewares/admin.js'
-import { create, getAll, edit, get, getId } from '../controllers/product.js'
+import { create, getAll, edit, get, getId } from '../controllers/serve.js'
 
 const router = Router()
 

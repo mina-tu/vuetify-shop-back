@@ -168,12 +168,12 @@ export const getId = async (req, res) => {
     if (error.name === 'CastError' || error.message === 'ID') {
       res.status(StatusCodes.BAD_REQUEST).json({
         success: false,
-        message: '商品 ID 格式錯誤'
+        message: ' ID 格式錯誤'
       })
     } else if (error.message === 'NOT FOUND') {
       res.status(StatusCodes.NOT_FOUND).json({
         success: false,
-        message: '查無商品'
+        message: '查無'
       })
     } else {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
