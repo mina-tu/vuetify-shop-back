@@ -7,7 +7,6 @@ import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit'
 import routeUser from './routes/user.js'
 import routeProduct from './routes/product.js'
-import routeOrder from './routes/order.js'
 import routeServe from './routes/serve.js'
 import routeContactMessage from './routes/contactMessage.js' // 修改這裡
 import './passport/passport.js'
@@ -53,7 +52,6 @@ app.use(mongoSanitize())
 
 app.use('/user', routeUser)
 app.use('/product', routeProduct)
-app.use('/order', routeOrder)
 app.use('/serve', routeServe)
 app.use('/contactMessage', routeContactMessage) // 修改這裡
 

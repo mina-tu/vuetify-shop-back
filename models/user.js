@@ -1,20 +1,7 @@
-import { Schema, model, ObjectId, Error } from 'mongoose'
+import { Schema, model, Error } from 'mongoose'
 import validator from 'validator'
 import bcrypt from 'bcrypt'
 import UserRole from '../enums/UserRole.js'
-
-const cartSchema = Schema({
-  p_id: {
-    type: ObjectId,
-    ref: 'products',
-    required: [true, '使用者購物車商品必填']
-  },
-  quantity: {
-    type: Number,
-    required: [true, '使用者購物車商品數量必填'],
-    min: [1, '使用者購物車商品數量不符']
-  }
-})
 
 const schema = new Schema({
   account: {
@@ -48,9 +35,6 @@ const schema = new Schema({
   tokens: {
     type: [String]
   },
-  cart: {
-    type: [cartSchema]
-  },
   role: {
     type: Number,
     default: UserRole.USER
@@ -73,13 +57,6 @@ schema.pre('save', function (next) {
     }
   }
   next()
-})
-
-schema.virtual('cartQuantity').get(function () {
-  const user = this
-  return user.cart.reduce((total, current) => {
-    return total + current.quantity
-  }, 0)
 })
 
 export default model('users', schema)
