@@ -9,6 +9,7 @@ import routeUser from './routes/user.js'
 import routeProduct from './routes/product.js'
 import routeOrder from './routes/order.js'
 import routeServe from './routes/serve.js'
+import routeContactMessage from './routes/contactMessage.js' // 修改這裡
 import './passport/passport.js'
 
 const app = express()
@@ -29,8 +30,6 @@ app.use(rateLimit({
 }))
 
 app.use(cors({
-  // origin = 請求的來源
-  // callback(錯誤, 是否允許)
   origin (origin, callback) {
     if (origin === undefined ||
       origin.includes('github.io') || origin.includes('localhost') || origin.includes('127.0.0.1')
@@ -56,6 +55,7 @@ app.use('/user', routeUser)
 app.use('/product', routeProduct)
 app.use('/order', routeOrder)
 app.use('/serve', routeServe)
+app.use('/contactMessage', routeContactMessage) // 修改這裡
 
 app.all('*', (req, res) => {
   res.status(StatusCodes.NOT_FOUND).json({
